@@ -1,7 +1,7 @@
 # overeddit   
 reddit comment overwriter. Overwrites all your reddit comments with a personal text.    
-This is as good as deleting your accuont in my opinion.
-Note any external sites e.g. internetarchive etc which have cached your comments this cannot delete. what you posted in the past is likely permanently saved somewhere
+This is as good as deleting your account in my opinion.
+Note any external sites e.g. internetarchive etc which have cached your comments this cannot delete. what you posted in the past is likely permanently saved somewhere, but this will delete or overwrite what is on reddit at least.
 
 # Status   
 16/06: Working and tested by me to overwrite all comments. I have currently done 500 of 18k without error.    
@@ -21,7 +21,7 @@ If you have an error check python is installed correctly and install pip if you 
 ### Running instructions:   
 Download the script main.py   
 Add your bearer token to line 5? # if you need help to find this. open reddit press F12 and search gql then scroll down to the authorisation and copy(https://imgur.com/pdnGTKT)   
-i listed id as a compulsory item also. however its unclear if this is required as i did not test it without. this is a parameter in the gpl post.   
+Add your id number in line 6? also. its unclear if this is required as i did not test it without. this is a parameter in the gpl post request as a parameter when editing a post in browser after it failed via api.   
 you can edit optional settings if you choose   
    
 Once you edited the script, open cmd and run the script (in cmd type python main.py or python "c:/user/desktop/main.py" - wherever the file is located   
@@ -31,6 +31,7 @@ https://imgur.com/j5aA5eX
 ## Future additions    
 option to delete comments    
 option to overwrite then delete comments.    
+Note: This was a quick 1-2hr script from my part. there is not much documentation and formatting probably isnt great, but it gets the job done.
    
 ## Background    
 in May 2023 Reddit announced changes to its policies which will force out any 3rd party apps.   
