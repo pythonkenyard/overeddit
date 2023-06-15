@@ -1,21 +1,45 @@
+import os
+import time
 import requests
+import csv
 
-#complete these fields
+#--------------UPDATE THESE FIELDS---------------------------------------------------
 
-bearer = "" #this will be a long field starting 'eyJ....' its basically your cookie
-comment = "deleted comment due to api change"
+#COMPULSORY
+bearer = ""                                     #this will be a long field starting 'eyJ....' its basically your cookie
 
 
-#SCRIPT DONT CHANGE BELOW THIS LINE
+#OPTIONAL
+comment = "deleted comment due to api change"   # edit for your custom comment
+delay = 5                                       # seconds between comments
+csv_file = ""                                   #link to csv file. will be prompted if not included.
+
+#-----------------SCRIPT DONT CHANGE BELOW THIS LINE--------------------------------------------------------------------------
+running = False
 comment = comment.replace(" ","%20") # needed format in the post request.
 
+def prompt_selection():
+  os.cls() # clear the cmd line
+  print("(1) overwrite comments:\
+        \n(z) Exit")
+  selection = input("choose:")
+  if selection == "1":
+    False, "overwrite"
 
-def overwrite(url):
+  elif selection.lower() == "z":
+    True, "skip"
+
+  else:
+    print("unknown input. please input e.g. 1 or z")
+    False, "skip"
+
+#MAIN FUNCTION FOR OVERWRITING. IT IS JUST A POST REQUEST AS PER CHROME
+def overwrite(comment):
   headers = {
       'authority': 'oauth.reddit.com',
       'accept': '*/*',
       'accept-language': 'en-US,en;q=0.9,es;q=0.8,de-DE;q=0.7,de;q=0.6,it;q=0.5',
-      'authorization': f'Bearer {bearer}'
+      'authorization': f'Bearer {bearer}',
       'content-type': 'application/x-www-form-urlencoded',
       'dnt': '1',
       'origin': 'https://www.reddit.com',
@@ -38,7 +62,37 @@ def overwrite(url):
       'gilding_detail': '1',
   }
 
-  data = f'api_type=json&return_rtjson=true&thing_id=t1_jn3o6ey&text&richtext_json=%7B%22document%22%3A%5B%7B%22e%22%3A%22par%22%2C%22c%22%3A%5B%7B%22e%22%3A%22text%22%2C%22t%22%3A%22{comment}%22%7D%5D%7D%5D%7D'
+  data = f'api_type=json&return_rtjson=true&thing_id=t1_{url}&text&richtext_json=%7B%22document%22%3A%5B%7B%22e%22%3A%22par%22%2C%22c%22%3A%5B%7B%22e%22%3A%22text%22%2C%22t%22%3A%22{comment}%22%7D%5D%7D%5D%7D'
 
   response = requests.post('https://oauth.reddit.com/api/editusertext', params=params, headers=headers, data=data)
   print(response)
+  
+# load the csv file and return everything from column 1
+def load_file(csvfile):
+    list = []
+    with open(csvfile, "r", newline="") as file:
+        reader = csv.reader(file, delimiter=",")
+        for row in reader:
+            list.append(row[0])
+    return list
+
+if __name__ == "__main__":
+    while not running:
+        running, action = prompt_selection()
+        if action == "skip":
+            pass
+        elif action == "overwrite":
+            if not csv_file:
+                try:
+                    import tkinter
+                    #add tkinter selection box
+                except:
+                    csv_file = input("input location of csv file (hold cmd, shift and right click then select copy as path): ")
+                    csv_file = csv_file.replace('"',"")#remove apostrophe if included
+            comments = load_file(csv_file) # load csv
+            duration = len(comments)
+            num=1
+            for comment in comments:
+                print(f"deleting comment {num} of {duration}")
+                overwrite(comment)
+                time.sleep(delay) # time delay between comment deletions to avoid ddosing or getting stopped.
