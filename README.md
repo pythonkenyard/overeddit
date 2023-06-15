@@ -1,6 +1,6 @@
 # overeddit   
 Edit over all your historic reddit comments.    
-This is as good as deleting your account in my opinion.
+This is as good as deleting your account in my opinion except it leaves a historic trace to show anyone in future that reddits decisions are why archived posts have lost so much useful info.
 Note any external sites e.g. internetarchive etc which have cached your comments this cannot delete. what you posted in the past is likely permanently saved somewhere, but this will delete or overwrite what is on reddit at least.
 
 # Status   
