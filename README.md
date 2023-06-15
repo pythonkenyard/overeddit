@@ -5,11 +5,11 @@ reddit comment overwriter. Overwrites all your reddit comments with a personal t
 ongoing. Functional to a point. but this errored for me on comment 110 of 18k so it needs some tweaking in the next 24hr to run without issue.   
    
 ## Requirements:   
-Python - https://www.python.org/downloads/   
-(click add to path when installing and also install pip)    
-   
-your comments data from Reddit: you can request it here. note it usually takes 24-48hrs. it will be a zip and you need the comments.csv file    
-   
+1. your comments data from Reddit: you can request it here. note it usually takes 24-48hrs. it will be a zip and you need the comments.csv file    
+   https://www.reddit.com/settings/data-request
+2. Python - https://www.python.org/downloads/   
+   (click add to path when installing and also install pip)   
+ 
 ### Setup Instructions:   
 open command line   
 pip install requests   
