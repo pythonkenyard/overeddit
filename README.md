@@ -7,9 +7,10 @@ Note any external sites e.g. internetarchive etc which have cached your comments
 16/06: Working and tested by me to overwrite all comments. I have currently done 500 of 18k without error.    
 
 ## Requirements:   
-1. your comments data from Reddit: you can request it here. note it usually takes 24-48hrs. it will be a zip and you need the comments.csv file    
+1. your comments data from Reddit: you can request it here.   
    https://www.reddit.com/settings/data-request
-2. Python - https://www.python.org/downloads/   
+   note it usually takes 24-48hrs. it will be a zip and you need the comments.csv file   
+3. Python - https://www.python.org/downloads/   
    (click add to path when installing and also install pip)   
  
 ### Setup Instructions:   
