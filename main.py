@@ -11,7 +11,7 @@ bearer = ""                                     #this will be a long field start
 
 #OPTIONAL
 comment = "deleted comment due to api change"   # edit for your custom comment
-delay = 5                                       # seconds between comments
+delay = 1.5                                       # seconds between comments. Reddit has specified oauth should be able to to 60-100 requests per minute
 csv_file = ""                                   #link to csv file. will be prompted if not included.
 
 #-----------------SCRIPT DONT CHANGE BELOW THIS LINE--------------------------------------------------------------------------
@@ -19,22 +19,22 @@ running = False
 comment = comment.replace(" ","%20") # needed format in the post request.
 
 def prompt_selection():
-  os.cls() # clear the cmd line
+  os.system("cls") # clear the cmd line
   print("(1) overwrite comments:\
         \n(z) Exit")
   selection = input("choose:")
   if selection == "1":
-    False, "overwrite"
+    return False, "overwrite"
 
   elif selection.lower() == "z":
-    True, "skip"
+    return True, "skip"
 
   else:
     print("unknown input. please input e.g. 1 or z")
-    False, "skip"
+    return False, "skip"
 
 #MAIN FUNCTION FOR OVERWRITING. IT IS JUST A POST REQUEST AS PER CHROME
-def overwrite(comment):
+def overwrite(item,num,duration):
   headers = {
       'authority': 'oauth.reddit.com',
       'accept': '*/*',
@@ -62,20 +62,29 @@ def overwrite(comment):
       'gilding_detail': '1',
   }
 
-  data = f'api_type=json&return_rtjson=true&thing_id=t1_{url}&text&richtext_json=%7B%22document%22%3A%5B%7B%22e%22%3A%22par%22%2C%22c%22%3A%5B%7B%22e%22%3A%22text%22%2C%22t%22%3A%22{comment}%22%7D%5D%7D%5D%7D'
+  data = f'api_type=json&return_rtjson=true&thing_id=t1_{item}&text&richtext_json=%7B%22document%22%3A%5B%7B%22e%22%3A%22par%22%2C%22c%22%3A%5B%7B%22e%22%3A%22text%22%2C%22t%22%3A%22{comment}%20{num}%20of%20{duration}%22%7D%5D%7D%5D%7D'
 
   response = requests.post('https://oauth.reddit.com/api/editusertext', params=params, headers=headers, data=data)
-  print(response)
+  if response.status_code == 200:
+    print("overwritten")
+  else:
+    print("error. Either increase duration between requests or subreddit is private")
   
 # load the csv file and return everything from column 1
 def load_file(csvfile):
     list = []
-    with open(csvfile, "r", newline="") as file:
+    list2= []
+    list3 = []
+    with open(csvfile, "r", newline="", encoding='Latin1') as file:
         reader = csv.reader(file, delimiter=",")
         for row in reader:
             list.append(row[0])
-    return list
+            list2.append(row[1])
+            list3.append(row[8])
+    return list, list2, list3
 
+
+#main script
 if __name__ == "__main__":
     while not running:
         running, action = prompt_selection()
@@ -85,14 +94,21 @@ if __name__ == "__main__":
             if not csv_file:
                 try:
                     import tkinter
-                    #add tkinter selection box
+                    #add tkinter selection box and remove raise
+                    raise
                 except:
                     csv_file = input("input location of csv file (hold cmd, shift and right click then select copy as path): ")
                     csv_file = csv_file.replace('"',"")#remove apostrophe if included
-            comments = load_file(csv_file) # load csv
-            duration = len(comments)
+            list_of_comments, list_of_urls,list_of_comments = load_file(csv_file) # load csv
+            duration = len(list_of_comments)
             num=1
-            for comment in comments:
-                print(f"deleting comment {num} of {duration}")
-                overwrite(comment)
+            for item in list_of_comments:
+                print(f"overwriting comment {num} of {duration}")
+                print(list_of_urls
+
+                overwrite(item,num,duration)
                 time.sleep(delay) # time delay between comment deletions to avoid ddosing or getting stopped.
+                num+=1
+        
+        elif action == "delete":
+            print("no support for deleting yet.")
