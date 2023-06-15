@@ -66,9 +66,11 @@ def overwrite(item,num,duration):
 
   response = requests.post('https://oauth.reddit.com/api/editusertext', params=params, headers=headers, data=data)
   if response.status_code == 200:
-    print("overwritten")
+    print("successfully overwritten")
+    return "successfully overwritten"
   else:
-    print("error. Either increase duration between requests or subreddit is private")
+    print("error.")
+    return "ERROR"
   
 # load the csv file and return everything from column 1
 def load_file(csvfile):
@@ -99,16 +101,24 @@ if __name__ == "__main__":
                 except:
                     csv_file = input("input location of csv file (hold cmd, shift and right click then select copy as path): ")
                     csv_file = csv_file.replace('"',"")#remove apostrophe if included
-            list_of_comments, list_of_urls,list_of_comments = load_file(csv_file) # load csv
+            list_of_comments, list_of_urls, list_of_comments = load_file(csv_file) # load csv
             duration = len(list_of_comments)
-            num=1
-            for item in list_of_comments:
-                print(f"overwriting comment {num} of {duration}")
-                print(list_of_urls
+            num=0
+            with open ("overeddit.txt","w") as f:
 
-                overwrite(item,num,duration)
-                time.sleep(delay) # time delay between comment deletions to avoid ddosing or getting stopped.
-                num+=1
+                for item in list_of_comments:
+                    
+                    print(list_of_urls[num])
+                    print(list_of_comments[num])
+                    num+=1
+                    print(f"overwriting comment {num} of {duration}")
+                    result = overwrite(item,num,duration)
+                    output = f"{result}: {list_of_comments[num]}"
+                    f.write(output)
+                    time.sleep(delay) # time delay between comment deletions to avoid ddosing or getting stopped.
+            f.close()
+                    
         
         elif action == "delete":
             print("no support for deleting yet.")
+      
