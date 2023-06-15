@@ -15,7 +15,7 @@ def overwrite(url):
       'authority': 'oauth.reddit.com',
       'accept': '*/*',
       'accept-language': 'en-US,en;q=0.9,es;q=0.8,de-DE;q=0.7,de;q=0.6,it;q=0.5',
-      'authorization': f'Bearer {bearer}
+      'authorization': f'Bearer {bearer}'
       'content-type': 'application/x-www-form-urlencoded',
       'dnt': '1',
       'origin': 'https://www.reddit.com',
@@ -38,7 +38,7 @@ def overwrite(url):
       'gilding_detail': '1',
   }
 
-  data = 'api_type=json&return_rtjson=true&thing_id=t1_jn3o6ey&text&richtext_json=%7B%22document%22%3A%5B%7B%22e%22%3A%22par%22%2C%22c%22%3A%5B%7B%22e%22%3A%22text%22%2C%22t%22%3A%22deleted%20content%20due%20to%20api%20change%22%7D%5D%7D%5D%7D'
+  data = f'api_type=json&return_rtjson=true&thing_id=t1_jn3o6ey&text&richtext_json=%7B%22document%22%3A%5B%7B%22e%22%3A%22par%22%2C%22c%22%3A%5B%7B%22e%22%3A%22text%22%2C%22t%22%3A%22{comment}%22%7D%5D%7D%5D%7D'
 
   response = requests.post('https://oauth.reddit.com/api/editusertext', params=params, headers=headers, data=data)
   print(response)
