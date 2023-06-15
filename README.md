@@ -28,6 +28,8 @@ you can edit optional settings if you choose
 Once you edited the script, open cmd and run the script (in cmd type python main.py or python "c:/user/desktop/main.py" - wherever the file is located   
 follow the onscreen instructions. example in this image   
 https://imgur.com/j5aA5eX   
+
+STOPPING: If you need to stop it at any stage bash ctrl + z a few times. you will have a prompt to resume where you left off when you restart.   
    
 ## Future additions    
 option to delete comments    
