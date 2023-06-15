@@ -1,0 +1,6 @@
+1 SUCCESS: https://www.reddit.com/r/gaming/comments/16uksd/tetris_couch_cushions/c7zhwjn/2 SUCCESS: https://www.reddit.com/r/ireland/comments/1vqqxn/kickass_torrents_now_fully_blocked_in_ireland/cev7vgk/
+3 SUCCESS: https://www.reddit.com/r/videos/comments/1hgant/police_arrest_man_for_filming_raid_then_shoot_his/cau36ja/
+4 ERROR: https://www.reddit.com/r/AskReddit/comments/1k5yok/wingmen_of_reddit_what_crazy_things_have_you_done/cbmb406/
+5 SUCCESS: https://www.reddit.com/r/gaming/comments/1uwpcm/deleted_by_user/cen4nwp/
+6 SUCCESS: https://www.reddit.com/r/AdviceAnimals/comments/1hekns/i_married_the_perfect_woman/catoh6z/
+7 SUCCESS: https://www.reddit.com/r/funny/comments/252046/passed_out_missing_out/chczojx/
