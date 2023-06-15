@@ -1,7 +1,10 @@
 # overeddit   
 reddit comment overwriter. Overwrites all your reddit comments with a personal text   
+
+# Status   
+ongoing. Functional to a point. but this errored for me on comment 110 of 18k for encoding so it needs some tweaking in the next 24hr   
    
-Requirements:   
+## Requirements:   
 Python - https://www.python.org/downloads/   
 (click add to path when installing and also install pip)    
    
