@@ -3,6 +3,12 @@ import requests
 #complete these fields
 
 bearer = "" #this will be a long field starting 'eyJ....' its basically your cookie
+comment = "deleted comment due to api change"
+
+
+#SCRIPT DONT CHANGE BELOW THIS LINE
+comment = comment.replace(" ","%20") # needed format in the post request.
+
 
 def overwrite(url):
   headers = {
