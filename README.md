@@ -1,5 +1,5 @@
 # overeddit   
-reddit comment overwriter. Overwrites all your reddit comments with a personal text.    
+Edit over all your historic reddit comments.    
 This is as good as deleting your account in my opinion.
 Note any external sites e.g. internetarchive etc which have cached your comments this cannot delete. what you posted in the past is likely permanently saved somewhere, but this will delete or overwrite what is on reddit at least.
 
@@ -33,8 +33,8 @@ STOPPING: If you need to stop it at any stage bash ctrl + z a few times. you wil
    
 ## Future additions    
 option to delete comments    
-option to both overwrite then delete comments. (I have seen previous addons do this)      
-Note: This was a quick 1-2hr script from my part. there is not much documentation and formatting probably isnt great, but it gets the job done.    
+option to both overwrite then delete comments. (I have seen previous addons do this)     
+Possibility to have a list of various comments which are chosen at random just to spice things up.       
 Potential other options for ease of use: make a one click exe which can be run with login prompt and get token automatically. Currently beyond the scope of project but if there is demand I could look into this.   
    
 ## Background    
@@ -49,3 +49,5 @@ Please feel free to see the script I have compiled (main.py)
 As an aside to the above I had been deleting some of my comments prior to this however reddit never supported deleting comments older than 1 year which is as far as you can view your history.    
 as such i have personally built 10 years of comments with no way to remove comments over 8 years old.    
 This script provides a functional,autoamted method to do this.   
+
+Note: This was a quick 1-2hr script from my part. there is not much documentation within the script itself and formatting isnt great, but it gets the job done.  
