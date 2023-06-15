@@ -19,7 +19,7 @@ running = False
 comment = comment.replace(" ","%20") # needed format in the post request.
 
 def prompt_selection():
-  os.system("cls") # clear the cmd line
+  #os.system("cls") # clear the cmd line
   print("(1) overwrite comments:\
         \n(z) Exit")
   selection = input("choose:")
@@ -66,10 +66,10 @@ def overwrite(item,num,duration):
 
   response = requests.post('https://oauth.reddit.com/api/editusertext', params=params, headers=headers, data=data)
   if response.status_code == 200:
-    print("successfully overwritten")
-    return "successfully overwritten"
+    print("SUCCESS")
+    return "SUCCESS"
   else:
-    print("error.")
+    print("ERROR")
     return "ERROR"
   
 # load the csv file and return everything from column 1
@@ -80,9 +80,9 @@ def load_file(csvfile):
     with open(csvfile, "r", newline="", encoding='Latin1') as file:
         reader = csv.reader(file, delimiter=",")
         for row in reader:
-            list.append(row[0])
-            list2.append(row[1])
-            list3.append(row[8])
+            list.append(row[0]) #ids
+            list2.append(row[1]) # urls
+            list3.append(row[8]) # comment text
     return list, list2, list3
 
 
@@ -101,24 +101,48 @@ if __name__ == "__main__":
                 except:
                     csv_file = input("input location of csv file (hold cmd, shift and right click then select copy as path): ")
                     csv_file = csv_file.replace('"',"")#remove apostrophe if included
-            list_of_comments, list_of_urls, list_of_comments = load_file(csv_file) # load csv
+            list_of_ids, list_of_urls, list_of_comments = load_file(csv_file) # load csv
             duration = len(list_of_comments)
             num=0
-            with open ("overeddit.txt","w") as f:
+            start_num=0
+            try:
+                with open ("overeddit_log.txt","r") as f:
+                    for count, line in enumerate(f):
+                        pass
+                    count+=1
+                    print(f"existing data log file for {count} items")
+                    start_num=input(f"start at what item (1-{duration}): ")
+                    if not start_num:
+                        start_num = 0
 
-                for item in list_of_comments:
+                f.close()
+                write = "a"
+                
+            except:
+                print("starting new log file")
+                write = "w"
+            
+            with open ("overeddit_log.txt",write) as f:
+                for item in list_of_ids:
+                    if num < int(start_num):
+                        pass
+                        
+                        num+=1
+                    else:
+                        print(list_of_urls[num])
+                        print(list_of_comments[num])
+                        num+=1
+                        print(f"\noverwriting comment {num} of {duration}")
+                        result = overwrite(item,num,duration)
+                        output = f"{num} {result}: {list_of_urls[num]}\n"
+                        try:
+                            f.write(output)
+                        except:
+                            f.write(f"error loggin line {num}")
+                        time.sleep(delay) # time delay between comment deletions to avoid ddosing or getting stopped.
                     
-                    print(list_of_urls[num])
-                    print(list_of_comments[num])
-                    num+=1
-                    print(f"overwriting comment {num} of {duration}")
-                    result = overwrite(item,num,duration)
-                    output = f"{result}: {list_of_comments[num]}"
-                    f.write(output)
-                    time.sleep(delay) # time delay between comment deletions to avoid ddosing or getting stopped.
             f.close()
                     
         
         elif action == "delete":
             print("no support for deleting yet.")
-      
