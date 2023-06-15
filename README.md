@@ -33,8 +33,9 @@ STOPPING: If you need to stop it at any stage bash ctrl + z a few times. you wil
    
 ## Future additions    
 option to delete comments    
-option to overwrite then delete comments.    
-Note: This was a quick 1-2hr script from my part. there is not much documentation and formatting probably isnt great, but it gets the job done.
+option to both overwrite then delete comments. (I have seen previous addons do this)      
+Note: This was a quick 1-2hr script from my part. there is not much documentation and formatting probably isnt great, but it gets the job done.    
+Potential other options for ease of use: make a one click exe which can be run with login prompt and get token automatically. Currently beyond the scope of project but if there is demand I could look into this.   
    
 ## Background    
 in May 2023 Reddit announced changes to its policies which will force out any 3rd party apps.   
