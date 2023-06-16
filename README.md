@@ -30,7 +30,10 @@ follow the onscreen instructions. example in this image
 https://imgur.com/j5aA5eX   
 
 STOPPING: If you need to stop it at any stage bash ctrl + z a few times. you will have a prompt to resume where you left off when you restart.   
-   
+
+## Known Issues
+I ran into an error around 12 hours into running this. It seems the bearer token expires and you need a new one. So you can run this for around 15k comments before error and you need an updated bearer token
+
 ## Future additions    
 option to delete comments    
 option to both overwrite then delete comments. (I have seen previous addons do this)     
