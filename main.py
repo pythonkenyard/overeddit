@@ -6,11 +6,11 @@ import csv
 #--------------UPDATE THESE FIELDS---------------------------------------------------
 
 #COMPULSORY
-bearer = ""                #this will be a long field starting 'eyJ....' its basically your cookie
-id = ""                    # this may not be  compulsory or can be any value? its used for backup when the api fails to ensure deletion of comments. (maybe 1 in every 15 fails if not used)
+bearer = ""                #this will be a long field starting 'eyJ....' its function is similar to a cookie.
+id = ""                    # this may not be compulsory or can be any value? its used for backup when the api fails to ensure deletion of comments. (maybe 1 in every 15 fails if not used)
 
 #OPTIONAL
-comment = "deleted comment due to api change"   # edit for your custom comment
+comment = "Deleted comment due to reddits API changes. Comment"   # edit for your custom comment. Note this script appends the comment number and total comments e.g. (Comment 19 of 2000).
 csv_file = ""                                   #link to csv file. will be prompted if not included.
 
 delay = 1.5                                       # seconds between comments. Reddit has specified oauth should be able to to 60-100 requests per minute
@@ -73,7 +73,12 @@ def overwrite(item,num,duration):
 
   data = f'api_type=json&return_rtjson=true&thing_id=t1_{item}&text&richtext_json=%7B%22document%22%3A%5B%7B%22e%22%3A%22par%22%2C%22c%22%3A%5B%7B%22e%22%3A%22text%22%2C%22t%22%3A%22{comment}%20{num}%20of%20{duration}%22%7D%5D%7D%5D%7D'
 
-  response = requests.post('https://oauth.reddit.com/api/editusertext', params=params, headers=headers, data=data)
+  try:
+    response = requests.post('https://oauth.reddit.com/api/editusertext', params=params, headers=headers, data=data)
+  except:
+    print("had a timeout or other failure")
+    time.sleep(5)
+    response = requests.post('https://oauth.reddit.com/api/editusertext', params=params, headers=headers, data=data)
   if response.status_code == 200:
     print("SUCCESS")
     return "SUCCESS"
@@ -112,7 +117,12 @@ def overwrite(item,num,duration):
     },
 }
 
-    response = requests.post('https://gql.reddit.com/', headers=headers, json=json_data)
+    try:
+        response = requests.post('https://gql.reddit.com/', headers=headers, json=json_data)
+    except:
+        print("had a timeout or other failure")
+        time.sleep(5)
+        response = requests.post('https://gql.reddit.com/', headers=headers, json=json_data)
     if response.status_code == 200:
         print("SUCCESS on second try")
         return "SUCCESS"
@@ -196,8 +206,7 @@ if __name__ == "__main__":
                         time.sleep(delay) # time delay between comment deletions to avoid ddosing or getting stopped.
                     
             f.close()
-                    
-        
+                  
         elif action == "delete":
             print("no support for deleting yet.")
       
