@@ -14,16 +14,16 @@ Note any external sites e.g. internetarchive etc which have cached your comments
    (click add to path when installing and also install pip)   
  
 ### Setup Instructions:   
-open command line   
-pip install requests   
-pip install csv   
-If you have an error check python is installed correctly and install pip if you didnt install it as part of python install.
+1.open command line   
+2.type "pip install requests" and press enter to install this module then also  
+3."pip install csv"   
+If you have an error check python is installed correctly and install pip if you didnt install it as part of python install. Or note maybe it will say you already have them installed.
    
 ### Running instructions:   
-Download the script main.py   
-Add your bearer token to line 5? # if you need help to find this. open reddit press F12 and search gql then scroll down to the authorisation and copy(https://imgur.com/pdnGTKT)   
-Add your id number in line 6? also. its unclear if this is required as i did not test it without. this is a parameter in the gpl post request as a parameter when editing a post in browser after it failed via api.   
-you can edit optional settings if you choose   
+1.Download the script main.py   
+2.Add your bearer token to line 9 # if you need help to find this. open reddit press F12 and search gql then scroll down to the authorisation and copy(https://imgur.com/pdnGTKT)   
+3.Add your id number in line 10 also. this is needed for certain comments. This is also in the reddit F12 screen in the gql, click the parameters tab and you will find id = "".   
+Note: you can edit optional settings if you choose   
    
 Once you edited the script, open cmd and run the script (in cmd type python main.py or python "c:/user/desktop/main.py" - wherever the file is located   
 follow the onscreen instructions. example in this image   
