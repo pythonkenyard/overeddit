@@ -4,7 +4,7 @@ This is as good as deleting your account in my opinion except it leaves a histor
 Note any external sites e.g. internetarchive etc which have cached your comments this cannot delete. what you posted in the past is likely permanently saved somewhere, but this will delete or overwrite what is on reddit at least.
 
 # Status   
-16/06: Working and tested by me to overwrite all comments. I have currently done 500 of 18k without error.    
+16/06: Working and tested by me to overwrite all comments. I have currently done 12.5k of 18k without error running ~8 hours.    
 
 ## Requirements:   
 1. your comments data from Reddit: you can request it here.   
