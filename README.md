@@ -4,7 +4,8 @@ This is as good as deleting your account in my opinion except it leaves a histor
 Note any external sites e.g. internetarchive etc which have cached your comments this cannot delete. what you posted in the past is likely permanently saved somewhere, but this will delete or overwrite what is on reddit at least.
 
 # Status   
-16/06: Working and tested by me to overwrite all comments. I have currently done 12.5k of 18k without error running ~8 hours.    
+17/06: Working and tested by me to overwrite all comments. 
+your account token seems tobe valid for 12 hours. so i managed to overwrite 15k of my 18k comments before i needed to update it and restart.
 
 ## Requirements:   
 1. your comments data from Reddit: you can request it here.   
@@ -35,6 +36,7 @@ STOPPING: If you need to stop it at any stage bash ctrl + z a few times. you wil
 I ran into an error around 12 hours into running this. It seems the bearer token expires and you need a new one. So you can run this for around 15k comments before error and you need an updated bearer token
 
 ## Future additions    
+automatically stop after successivw fails? will ensure once token expires the system doesnt continue running
 option to delete comments    
 option to both overwrite then delete comments. (I have seen previous addons do this)     
 Possibility to have a list of various comments which are chosen at random just to spice things up.       
